@@ -121,7 +121,6 @@
   .app:empty{display:none}
   .app:not(:empty){margin-top:auto;padding-top:14px}
   .app:not(:empty) + .back{margin-top:0;padding-top:10px}
-  .foot{margin:12px 0 0;font-size:12.5px;color:var(--muted)}
 
   @media (max-width:820px){ .widget{grid-template-columns:1fr;grid-template-rows:auto auto} .vars{overflow:visible} }
   @media (max-width:560px){
@@ -157,7 +156,6 @@
         </a>
         <p>Elige tu modelo en el Momento 4 · Ejecutar</p>
       </div>
-      <p class="foot">Simulación para entender la lógica. El resultado oficial se genera en el Dimensionador (Power Apps) y llega por correo con el enlace a SharePoint.</p>
     </aside>
   </div>
 
@@ -214,9 +212,9 @@ var RANGES = [
 ];
 
 /* ======== DESTINO DEL BOTÓN "VOLVER A LA RUTA DEL CAMBIO" ========
-   Página 18 del Genially (EJECUTAR · Momento 4). idSlide es el identificador de la página.
+   Página 18 del Genially «Gestión del CAMBIO-ISA_2026» (EJECUTAR · Momento 4). idSlide es el identificador de la página.
    BACK_TARGET: "_top" navega la ventana completa (lo ideal dentro de Genially); "_blank" abre pestaña nueva. */
-var BACK_URL    = "https://view.genially.com/6ac8f590ac864d41ccb4bfcb?idSlide=67293d62-5688-4083-9ae0-689f731599e6";
+var BACK_URL    = "https://view.genially.com/6adfcd9624329b37a50c5590?idSlide=67293d62-5688-4083-9ae0-689f731599e6";
 var BACK_TARGET = "_top";
 
 /* ======== CONFIGURACIÓN POR URL ======== */
@@ -319,9 +317,15 @@ rows.addEventListener("click", function(e){
     update();
   }
 });
+/* Reiniciar: deja las 9 preguntas en 0, cierra las escalas abiertas y vuelve al inicio del formulario */
 document.getElementById("reset").addEventListener("click", function(){
-  VARS.forEach(function(v,i){ document.getElementById("q"+i).value = ZERO ? 0 : v.def });
+  VARS.forEach(function(v,i){
+    document.getElementById("q"+i).value = 0;
+    document.getElementById("b"+i).setAttribute("aria-expanded","false");
+    document.getElementById("d"+i).hidden = true;
+  });
   update();
+  window.scrollTo({top:0,behavior:"smooth"});
 });
 update();
 </script>
